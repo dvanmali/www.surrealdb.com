@@ -95,7 +95,10 @@ Router.map(function () {
 		});
 
 		this.route('deployment', function () {
-			this.route('google');
+			this.route('google', function () {
+				this.route('setup');
+				this.route('certificates');
+			});
 			this.route('amazon');
 			this.route('kubernetes');
 			this.route('heroku');

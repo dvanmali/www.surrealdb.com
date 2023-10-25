@@ -8,7 +8,6 @@
 	<h2><Devicon @size="50" @type="google" /> Deploy on GKE (Google Kubernetes Engine) </h2>
 	<p>This article will guide you through setting up a highly available SurrealDB cluster backed by TiKV on a GKE Autopilot cluster.</p>
 	
-	
 	<h3>What is GKE?</h3>
 	<p><Link @link="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine</Link> is a managed Kubernetes service offered by Google Cloud Platform. In this guide we will create a <Link @link="https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview">GKE Autopilot</Link> cluster, which removes the need to manage the underlaying compute nodes.</p>
 
@@ -19,20 +18,33 @@
 	<p>In order for you to complete this tutorial you'll need:</p>
 	<ul>
 		<li>An account on <Link @link="https://cloud.google.com/">Google Cloud Platform</Link></li>
-		<li>The <Link @link="https://cloud.google.com/sdk/docs/install">gcloud CLI</Link></li>
-		<li><code>kubectl</code> with gcloud integration for accessing the GKE cluster. Installation <Link @link="https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl">here</Link></li>
+		<li><Link @link="https://cloud.google.com/sdk/docs/install"><code>gcloud</code> :</Link> Cli for Google Cloud Platform</li>
+		<li><Link @link="https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl"><code>kubectl</code> :</Link> To perform kubernetes actions the control plane.</li>
 		<li><Link @link="https://helm.sh/docs/intro/install/"><code>helm</code> :</Link> To install SurrealDB server and TiKV</li>
-		<li><Link @link="https://surrealdb.com/install"><code>Surreal CLI</code> : </Link> To interact with the SurrealDB server</li>
+		<li><Link @link="https://surrealdb.com/install"><code>Surreal CLI</code> :</Link> To interact with the SurrealDB server</li>
 	</ul>
 
 	<h3> Create GKE Cluster</h3>
 		<ol>
 			<li>Choose the target project and region. List them with these commands:</li>
 			<Code @name="docs/deployment/gke/list-projects-regions.sh" text="List projects and regions" />
-			<li>Run the following command to create a cluster replacing the <code>REGION</code> and <code>PROJECT_ID</code> for your desired values:</li>
+			<li>Run the following command to create a private node cluster replacing the <code>REGION</code> and <code>PROJECT_ID</code> for your desired values. Optionally,
+			<Link @link="https://cloud.google.com/sdk/gcloud/reference/container/clusters/create">
+				add creation flags
+			</Link>
+			to specify additional attributes such as VPC and Service-Accounts since these cannot be changed once deployed:</li>
 			<Code @name="docs/deployment/gke/create-cluster.sh" text="Create new GKE Autopilot cluster" />
 			<li>After the creation finishes, configure <code>kubectl</code> to connect to the new cluster:</li>
 			<Code @name="docs/deployment/gke/configure-kubectl.sh" text="Configure kubectl" />
+		</ol>
+
+	<h3> Create NAT Router</h3>
+		<p>Since the GKE was created as a private cluster, we must enable a NAT Router to communicate from the private cluster to the public internet but not vice-versa. For example, when pulling Docker images from Docker Hub during node creation or performing HTTP functions within the Cluster.</p>
+		<ol>
+			<li>Create NAT router:</li>
+			<Code @name="docs/deployment/gke/nat-create.sh" text="Create NAT Router" />
+			<li>Configure NAT router:</li>
+			<Code @name="docs/deployment/gke/nat-config.sh" text="Configure NAT Router" />
 		</ol>
 
 	<h3> Deploy TiDB operator</h3>
@@ -47,13 +59,13 @@
 		</ol>
 
 	<h3>Create TiDB cluster</h3>
-	<p>Now that we have the TiDB Operator running, it’s time to define a TiDB Cluster and let the Operator do the rest.</p>
+	<p>Now that we have the TiDB Operator running, it's time to define a TiDB Cluster and let the Operator do the rest.</p>
 	<ol>
 		<li>Create a local file named <code>tikv-cluster.yaml</code> with this content:</li>
 		<Code @name="docs/deployment/gke/tidb-cluster-def.sh" text="TiDB Cluster Definition" />
 		<li>Create the TiDB cluster:</li>
 		<Code @name="docs/deployment/gke/create-tidb-cluster.sh" text="Create TiDB cluster" />
-		<li>Check the cluster status and wait until it’s ready:</li>
+		<li>Check the cluster status and wait until it's ready:</li>
 		<Code @name="docs/deployment/gke/verify-tidb-cluster.sh" text="Verify TiDB cluster" />
 	</ol>
 
@@ -76,7 +88,6 @@
 	<h3>Cleanup</h3>
 		<p>Run the following commands to delete the Kubernetes resources and the GKE cluster:</p>
 		<Code @name="docs/deployment/gke/cleanup.sh" text="Cleanup commands" />
-
 
 <p>To contribute to this documentation, <Link @link={{github}}>edit this file on GitHub</Link>.</p>
 </Layout::Text>

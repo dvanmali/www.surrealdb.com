@@ -1,4 +1,4 @@
-$ export SURREALDB_URL=http://$(kubectl get ingress surrealdb-tikv -o json | jq -r .status.loadBalancer.ingress[0].ip)
+$ export SURREALDB_URL=https://$(DOMAIN)
 $ surreal sql -e $SURREALDB_URL
 > DEFINE USER root ON ROOT PASSWORD 'StrongSecretPassword!' ROLES OWNER;
 

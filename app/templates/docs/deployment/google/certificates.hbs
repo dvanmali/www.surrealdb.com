@@ -1,0 +1,36 @@
+<Crumb>
+  <Crumb::Item @link="docs">Documentation</Crumb::Item>
+  <Crumb::Item @link="docs.deployment">Deployment</Crumb::Item>
+  <Crumb::Item @link="docs.deployment.google">Deploy on GKE</Crumb::Item>
+</Crumb>
+
+<Layout::Text text-l text-f>
+  <h2>
+    <Devicon @size="50" @type="google" />SSL Certificate
+  </h2>
+
+  <h3 {{waypoint "managed-certificates" }}>Use Google Managed Certificate</h3>
+  <p>Creating a secure HTTPS connection can be added to your cluster with minimal configuration.</p>
+  <ol>
+    <li>Reserve a global static IP</li>
+    <Code @name="docs/deployment/gke/reserve-static-ip.sh" text="Reserve Static IP" />
+    <li>Create a local file named tikv-cluster.yaml. Replace DOMAIN with a fully-qualified domain names that you own
+      (ie.
+      example.com, db.example.com):</li>
+    <Code @name="docs/deployment/gke/managed-cert.sh" text="managed-cert.yaml" />
+    <li>Update the Surreal Deployment with the following config file.</li>
+    <Code @name="docs/deployment/gke/values-surreal.sh" text="values-surreal.yaml" />
+    <li>Deploy the certificate and the configs. Note it could take a few hours for the certificate to be approved by the
+      certificate authority.</li>
+    <Code @name="docs/deployment/gke/certificate-deploy.sh" text="values-surreal.yaml" />
+    <li>Verify the new connection string</li>
+    <Code @name="docs/deployment/gke/certificate-verify.sh" text="Verify Certificate" />
+  </ol>
+
+  <p>To contribute to this documentation,
+    <Link @link={{github}}>edit this file on GitHub</Link>.
+  </p>
+</Layout::Text>
+
+
+<Layout::Gap small />
