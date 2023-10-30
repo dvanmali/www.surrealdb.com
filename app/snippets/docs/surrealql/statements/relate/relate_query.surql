@@ -17,6 +17,6 @@ SELECT <-wrote.out FROM article;
 SELECT <-wrote->article FROM article;
 
 -- When was the article written?
-SELECT time.written as time_written FROM wrote;
-SELECT ->wrote.time.written as time_written FROM person;
-SELECT <-wrote.time.written as time_written FROM article;
+SELECT time.written AS time_written FROM wrote;
+SELECT ->wrote.time.written AS time_written FROM person;
+SELECT <-wrote.time.written AS time_written FROM article;

@@ -5,8 +5,8 @@
 </Meta::Tags>
 
 <Layout::Hero index>
-	<Layout::Text text-l>
-		<h1>The ultimate multi-model database</h1>
+	<Layout::Text index>
+		<h1>The ultimate<br>multi-model database</h1>
 		<h2>Develop easier. Build faster. Scale quicker.</h2>
 		<Button::Thicker @link="features">
 			<i class="fal fa-list-check"></i> <span>View all features</span>
@@ -15,6 +15,18 @@
 			<span>Get started with SurrealDB</span> <i class="fas fa-arrow-right"></i>
 		</Button::Thicker>
 	</Layout::Text>
+</Layout::Hero>
+
+<section>
+
+	<Layout::Gap large />
+
+	<Layout::Text text-l>
+		<h5 light>SurrealDB offers a dynamic and adaptable platform for business. With an integrated suite of cutting-edge database solutions, tools, and services, SurrealDB empowers your workforce to discover innovative answers using products meticulously crafted to meet their requirements.</h5>
+	</Layout::Text>
+
+	<Layout::Gap small />
+
 	<Layout::Boxes cols-3-to-2-to-1>
 		<Link @link="docs.surrealql" mini>
 			<Layout::Boxes::Item transparent @image="/static/img/products/ql.png" @text="The query language in SurrealDB looks and works similarly to traditional-SQL, but allows for querying over time-series and connected graph data. SurrealQL is an advanced query language, with programming language functionality, that allows developers or data analysts to work with SurrealDB in the ways they choose." hover />
@@ -32,23 +44,8 @@
 			<Layout::Boxes::Item transparent @image="/static/img/products/ml.png" @text="SurrealML enables machine learning models to be greatly simplified, ensuring reproducibility and consistency in machine learning pipelines. Running on our Rust engine, models can be built in Python, and imported in to SurrealDB for inference within the database runtime." hover />
 		</Link>
 	</Layout::Boxes>
-</Layout::Hero>
-
-<section>
-
-	<Layout::Gap large />
-
-	<Layout::Text text-l>
-		<h5 light>SurrealDB offers a dynamic and adaptable platform for business. With an integrated suite of cutting-edge database solutions, tools, and services, SurrealDB empowers your workforce to discover innovative answers using products meticulously crafted to meet their requirements.</h5>
-	</Layout::Text>
 
 	<Layout::Gap small />
-
-	<Layout::Boxes cols-1>
-		<Layout::Boxes::Item @image="/static/img/illustrations/illustrations.jpg" hover />
-	</Layout::Boxes>
-
-	<Layout::Gap line />
 
 	<Layout::Boxes cols-2-to-1>
 		<Layout::Boxes::Item text-l light @title="Database, realtime API layer, and security permissions all-in-one" @image="/static/img/illustrations/dark/database-api-security.jpg" @text="SurrealDB combines the database layer, the querying layer, and the API and authentication layer into one platform. Advanced table-based and row-based customisable access permissions allow for granular data access patterns for different types of users. There's no need for custom backend code and security rules with complicated database development." @buttontext="View all features" @url="features" />

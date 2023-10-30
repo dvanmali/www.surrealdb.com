@@ -20,7 +20,7 @@ SELECT array::group(tags) AS tags FROM article GROUP ALL;
 SELECT ( ( celsius * 2 ) + 30 ) AS fahrenheit FROM temperature;
 
 -- Return boolean expressions with an alias
-SELECT rating >= 4 as positive FROM review;
+SELECT rating >= 4 AS positive FROM review;
 
 -- Select manually generated object structure
 SELECT { weekly: false, monthly: true } AS `marketing settings` FROM user;

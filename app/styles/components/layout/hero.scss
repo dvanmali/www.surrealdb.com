@@ -5,11 +5,11 @@ layout-hero {
 	position:relative;
 	background-size:cover;
 	background-repeat:no-repeat;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-position: center;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+	background-position:center;
 
 	@include media(max-width-960) {
 		height:auto;
@@ -17,16 +17,44 @@ layout-hero {
 	}
 
 	&[index] {
-		height:auto;
-		padding:120px 0 150px 0;
-		background:linear-gradient(-60deg, rgba(255,0,160,1) 0%, rgba(135,0,255,0.8) 50%, rgba(0, 0, 0, 0.4) 110%);
+		height:100vh;
+		display:flex;
+		align-items:center;
+		flex-direction:column;
+		justify-content:center;
+		background-image:url("/static/img/illustrations/hero.svg"), linear-gradient(-60deg, rgba(255, 0, 160, 1) 0%, rgba(135, 0, 255, 0.8) 50%, rgba(0, 0, 0, 0.4) 110%);
+		
+		@include media(max-width-1301) {
+			background-image:url("/static/img/illustrations/hero1.svg"), linear-gradient(-60deg, rgba(255, 0, 160, 1) 0%, rgba(135, 0, 255, 0.8) 50%, rgba(0, 0, 0, 0.4) 110%);
+		}
 
 		@include media(max-width-960) {
 			height:auto;
-			padding:120px 0 50px 0;
+			padding:50px 0 100px 0;
+			background:linear-gradient(-60deg, rgba(255, 0, 160, 1) 0%, rgba(135, 0, 255, 0.8) 50%, rgba(0, 0, 0, 0.4) 110%);
 		}
-		
+	
+		content {
+			margin-top:0px;
+			text-align:center;
+	
+			@include media(max-width-960) {
+				text-align:left;
+				margin-top:50px;
+			}
+	
+			a[button] {
+				font-size:18px;
+				padding:15px 40px;
+				margin:0 10px 10px 10px;
+	
+				@include media(max-width-960) {
+					margin:0 10px 10px 0;
+				}
+			}
+		}
 	}
+	
 
 	&[products] {
 		height:auto;
@@ -201,6 +229,7 @@ layout-hero {
 	content {
 
 		margin-top:100px;
+		
 
 		@include media(max-width-768) {
 			margin-top:50px;
@@ -210,11 +239,7 @@ layout-hero {
 
 			font-size:18px;
 			padding:15px 40px;
-			margin:0 25px 25px 0;
-
-			@include media(max-width-768) {
-				margin:0 0px 15px 0;
-			}
+			margin:0 10px 10px 0px;
 
 		}
 
@@ -235,9 +260,9 @@ layout-hero {
 				background:-moz-linear-gradient(-60deg, rgba(135,0,255,1) 0%, rgba(255,0,158,1) 100%);
 				background:-webkit-linear-gradient(-60deg, rgba(135,0,255,1) 0%, rgba(255,0,158,1) 100%);
 				background:linear-gradient(-60deg, rgba(135,0,255,1) 0%, rgba(255,0,158,1) 100%);
-				-webkit-background-clip: text;
-				background-clip: text;
-				-webkit-text-fill-color: transparent;
+				-webkit-background-clip:text;
+				background-clip:text;
+				-webkit-text-fill-color:transparent;
 
 			}
 
@@ -264,6 +289,10 @@ layout-hero {
 			@include media(max-width-1250) {
 				width:100%;
 			}
+
+			@include media(max-width-962) {
+				font-size:24px;
+			}
 			
 			@include media(max-width-768) {
 				font-size:24px;
@@ -285,37 +314,37 @@ layout-hero {
 
 		h4 {
 
-			font-size: 22px;
-			font-weight: 600;
-			line-height: 1.2;
-			font-family: "SF Pro Display";
-			transition: color 0.3s;
-			color: var(--text-color);
-			text-rendering: optimizeLegibility;
-			-webkit-font-smoothing: antialiased;
+			font-size:22px;
+			font-weight:600;
+			line-height:1.2;
+			font-family:"SF Pro Display";
+			transition:color 0.3s;
+			color:var(--text-color);
+			text-rendering:optimizeLegibility;
+			-webkit-font-smoothing:antialiased;
 		
 			img[inline] {
-				height: 16px;
+				height:16px;
 			}
 		
 			i {
-				vertical-align: middle;
+				vertical-align:middle;
 			}
 		
 			span[faint] {
-				color: var(--faint-color);
+				color:var(--faint-color);
 			}
 		
 			&[nhs] {
-				width: 100%;
-				color: var(--faint-color);
+				width:100%;
+				color:var(--faint-color);
 			}
 		
 			@include media(max-width-768) {
-				font-size: 20px;
+				font-size:20px;
 		
 				img[inline] {
-					height: 12px;
+					height:12px;
 				}
 			}
 		
